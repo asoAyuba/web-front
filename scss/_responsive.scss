@@ -1,69 +1,74 @@
 @use 'variables' as *;
 
-// Mixins para media queries
-@mixin mobile {
-  @media (max-width: $breakpoint-mobile) {
-    @content;
-  }
+// Global Styles
+body {
+  font-family: $font-family;
+  background-color: $background-color;
+  color: $text-color;
+  margin: 0;
+  padding: 0;
 }
 
-@mixin tablet {
-  @media (max-width: $breakpoint-tablet) {
-    @content;
-  }
-}
-
-// Estilos responsive para el header (hero)
+// HEADER SECTION (Hero)
+// Ocupa el 100vh con imagen de fondo y velo oscuro
 .header-section {
+  height: 100vh;
+  position: relative;
+  background: url('../images/header.jpg') no-repeat center center/cover;
+
+  &::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 1;
+  }
+
   .header-content {
-    h1 {
-      font-size: 4rem;
-    }
-    p {
-      font-size: 1.5rem;
-    }
-  }
-  @include tablet {
-    .header-content {
-      h1 {
-        font-size: 3rem;
-      }
-      p {
-        font-size: 1.2rem;
-      }
-    }
-  }
-  @include mobile {
-    .header-content {
-      h1 {
-        font-size: 2.5rem;
-      }
-      p {
-        font-size: 1rem;
-      }
-    }
+    position: relative;
+    z-index: 2;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    color: #fff;
+    text-align: center;
   }
 }
 
-// Ejemplo: Responsive para secciones generales
+// Secciones generales (excepto header)
+// Cada sección ocupa el 50vh en desktop
 .section {
-  min-height: 100vh;
-  padding: 2rem;
-  @include mobile {
-    min-height: auto;
+  height: 50vh;
+}
+
+// Layout de dos columnas para secciones (en desktop)
+// Con la clase .reverse se invierte el orden de columnas
+.two-columns {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  .text-column,
+  .image-column {
+    flex: 1;
     padding: 1rem;
   }
+
+  &.reverse {
+    flex-direction: row-reverse;
+  }
 }
 
-// Ajuste de imágenes
-img {
-  max-width: 100%;
-  height: auto;
-}
-
-@include mobile {
-  .section.two-columns {
+// En mobile y tablet, las secciones se apilan en una sola columna
+@media (max-width: 1024px) {
+  .two-columns {
     flex-direction: column;
+
     .text-column,
     .image-column {
       width: 100%;

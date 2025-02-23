@@ -104,32 +104,88 @@ body {
   }
 }
 
-.section {
-  min-height: 100vh;  // Cada sección tendrá al menos la altura de la ventana
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 2rem;      // Ajusta el padding según necesites
+
+// Mixin para dispositivos móviles
+@mixin mobile {
+  @media (max-width: $breakpoint-mobile) {
+    @content;
+  }
 }
 
-// Estilo para secciones en dos columnas
-.section.two-columns {
+// Mixin para tablet (si lo necesitas)
+@mixin tablet {
+  @media (max-width: $breakpoint-tablet) {
+    @content;
+  }
+}
+
+// Ejemplo de estilos responsive para el header (hero)
+.header-section {
+  .header-content {
+    h1 {
+      font-size: 4rem;
+    }
+    p {
+      font-size: 1.5rem;
+    }
+  }
+  @include tablet {
+    .header-content {
+      h1 {
+        font-size: 3rem;
+      }
+      p {
+        font-size: 1.2rem;
+      }
+    }
+  }
+  @include mobile {
+    .header-content {
+      h1 {
+        font-size: 2.5rem;
+      }
+      p {
+        font-size: 1rem;
+      }
+    }
+  }
+}
+
+// Estilos responsive para secciones generales (por ejemplo, dos columnas)
+.section {
+  height: 50vh;
+  padding: 2rem;
+  @include mobile {
+    height: 50vh; // O ajusta según prefieras que en mobile la sección tenga 50vh
+    padding: 1rem;
+  }
+}
+
+// Para ajustar el layout de dos columnas en mobile (apilarlas)
+.two-columns {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  flex-wrap: wrap;
 
-  // Cada columna ocupa la mitad del espacio
   .text-column,
   .image-column {
     flex: 1;
     padding: 1rem;
   }
 
-  // Si se requiere imagen o texto con tamaños diferentes, se puede ajustar aquí
-}
+  &.reverse {
+    flex-direction: row-reverse;
+  }
 
-// Si se añade la clase 'reverse', se invierte el orden de las columnas
-.section.two-columns.reverse {
-  flex-direction: row-reverse;
+  @include mobile {
+    flex-direction: column;
+    .text-column,
+    .image-column {
+      width: 100%;
+      padding: 0.5rem;
+    }
+    &.reverse {
+      flex-direction: column;
+    }
+  }
 }
