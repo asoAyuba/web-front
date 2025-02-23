@@ -1,0 +1,40 @@
+.contacta {
+    padding: 4rem 2rem;
+    background-color: #fff;
+    text-align: center;
+    h2 {
+      font-family: $heading-font;
+      margin-bottom: 1rem;
+    }
+    p {
+      font-size: 1.2rem;
+    }
+    .contact-form {
+      max-width: 500px;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      input,
+      textarea {
+        padding: 0.8rem;
+        margin-bottom: 1rem;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        &:invalid {
+          border-color: red;
+        }
+      }
+      button {
+        padding: 0.8rem;
+        background-color: $primary-color;
+        color: #fff;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        &:hover {
+          background-color: darken($primary-color, 10%);
+        }
+      }
+    }
+  }
+  

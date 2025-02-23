@@ -1,0 +1,11 @@
+// Breakpoint
+$breakpoint-mobile: 768px;
+
+@media (max-width: $breakpoint-mobile) {
+  .nav ul {
+    display: none;
+  }
+  .nav.active {
+    display: block;
+  }
+}
