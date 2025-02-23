@@ -48,6 +48,16 @@ img {
   height: auto;
 }
 
+@media (max-width: 768px) {
+  .section.two-columns {
+    flex-direction: column;
+  }
+  .section.two-columns .text-column,
+  .section.two-columns .image-column {
+    width: 100%;
+    padding: 0.5rem;
+  }
+}
 /* Estilos globales y estructura base */
 .header-section {
   position: relative;
@@ -336,6 +346,22 @@ body {
   align-items: center;
   justify-content: center;
   padding: 2rem;
+}
+
+.section.two-columns {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+.section.two-columns .text-column,
+.section.two-columns .image-column {
+  flex: 1;
+  padding: 1rem;
+}
+
+.section.two-columns.reverse {
+  flex-direction: row-reverse;
 }
 
 /*# sourceMappingURL=style.css.map */

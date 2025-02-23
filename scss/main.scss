@@ -112,3 +112,24 @@ body {
   padding: 2rem;      // Ajusta el padding según necesites
 }
 
+// Estilo para secciones en dos columnas
+.section.two-columns {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+
+  // Cada columna ocupa la mitad del espacio
+  .text-column,
+  .image-column {
+    flex: 1;
+    padding: 1rem;
+  }
+
+  // Si se requiere imagen o texto con tamaños diferentes, se puede ajustar aquí
+}
+
+// Si se añade la clase 'reverse', se invierte el orden de las columnas
+.section.two-columns.reverse {
+  flex-direction: row-reverse;
+}

@@ -60,3 +60,14 @@ img {
   max-width: 100%;
   height: auto;
 }
+
+@include mobile {
+  .section.two-columns {
+    flex-direction: column;
+    .text-column,
+    .image-column {
+      width: 100%;
+      padding: 0.5rem;
+    }
+  }
+}
