@@ -1,17 +1,18 @@
+@use '../variables' as *;
+
 .socios {
-    padding: 4rem 2rem;
-    background-color: #f0f0f0;
-    text-align: center;
-    h2 {
-      font-family: $heading-font;
-      margin-bottom: 1rem;
-    }
-    p {
-      font-size: 1.2rem;
-    }
-    img {
-      max-width: 100%;
-      margin-top: 1rem;
-    }
+  padding: 4rem 2rem;
+  background-color: #f0f0f0;
+  text-align: center;
+  h2 {
+    font-family: $heading-font;
+    margin-bottom: 1rem;
   }
-  
+  p {
+    font-size: 1.2rem;
+  }
+  img {
+    max-width: 100%;
+    margin-top: 1rem;
+  }
+}

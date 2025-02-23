@@ -1,54 +1,39 @@
-.menu {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    background-color: $primary-color;
-    padding: 1rem 2rem;
-    .logo {
-      font-family: $heading-font;
+@use '../variables' as *;
+@use '../responsive' as *;
+
+.header-section {
+  position: relative;
+  height: 100vh; // Ocupa toda la altura de la pantalla
+  background: url('../images/header.jpg') no-repeat center center/cover; // Imagen de fondo cargada por SCSS
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  color: #fff; // Texto en blanco
+
+  // Velo oscuro
+  &::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5); // Ajusta la opacidad según necesites
+    z-index: 1;
+  }
+
+  // Contenedor del contenido (texto) que se mostrará por encima del velo
+  .header-content {
+    position: relative;
+    z-index: 2;
+    
+    h1 {
+      font-size: 4rem;
+      margin: 0;
+    }
+    p {
       font-size: 1.5rem;
-      color: #fff;
-    }
-    nav {
-      ul {
-        list-style: none;
-        display: flex;
-        li {
-          margin-left: 1.5rem;
-          a {
-            text-decoration: none;
-            color: #fff;
-            &:hover {
-              color: $secondary-color;
-            }
-          }
-        }
-      }
-    }
-    .hamburger {
-      display: none;
-      flex-direction: column;
-      cursor: pointer;
-      span {
-        width: 25px;
-        height: 3px;
-        background: #fff;
-        margin: 4px 0;
-      }
     }
   }
-  
-  @media (max-width: $breakpoint-mobile) {
-    .hamburger {
-      display: flex;
-    }
-    nav ul {
-      flex-direction: column;
-      background: $primary-color;
-      position: absolute;
-      top: 100%;
-      right: 0;
-      width: 200px;
-    }
-  }
-  
+}

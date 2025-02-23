@@ -1,17 +1,19 @@
+@use 'sass:color';
+@use '../variables' as *;
+
 .quienes-somos {
-    padding: 4rem 2rem;
-    background-color: lighten($primary-color, 40%);
-    text-align: center;
-    h2 {
-      font-family: $heading-font;
-      margin-bottom: 1rem;
-    }
-    p {
-      font-size: 1.2rem;
-    }
-    img {
-      max-width: 100%;
-      margin-top: 1rem;
-    }
+  padding: 4rem 2rem;
+  background-color: color.adjust($primary-color, $lightness: 40%);
+  text-align: center;
+  h2 {
+    font-family: $heading-font;
+    margin-bottom: 1rem;
   }
-  
+  p {
+    font-size: 1.2rem;
+  }
+  img {
+    max-width: 100%;
+    margin-top: 1rem;
+  }
+}

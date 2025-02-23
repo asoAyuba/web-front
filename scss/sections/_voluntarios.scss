@@ -1,44 +1,48 @@
+@use 'sass:color';
+@use '../variables' as *;
+
 .voluntarios {
-    padding: 4rem 2rem;
-    background-color: #fff;
-    text-align: center;
-    h2 {
-      font-family: $heading-font;
+  padding: 4rem 2rem;
+  background-color: #fff;
+  text-align: center;
+
+  h2 {
+    font-family: $heading-font;
+    margin-bottom: 1rem;
+  }
+  p {
+    font-size: 1.2rem;
+  }
+  img {
+    max-width: 100%;
+    margin-top: 1rem;
+  }
+  .volunteer-form {
+    max-width: 500px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+
+    input,
+    textarea {
+      padding: 0.8rem;
       margin-bottom: 1rem;
-    }
-    p {
-      font-size: 1.2rem;
-    }
-    img {
-      max-width: 100%;
-      margin-top: 1rem;
-    }
-    .volunteer-form {
-      max-width: 500px;
-      margin: 0 auto;
-      display: flex;
-      flex-direction: column;
-      input,
-      textarea {
-        padding: 0.8rem;
-        margin-bottom: 1rem;
-        border: 1px solid #ccc;
-        border-radius: 4px;
-        &:invalid {
-          border-color: red;
-        }
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      &:invalid {
+        border-color: red;
       }
-      button {
-        padding: 0.8rem;
-        background-color: $accent-color;
-        color: #fff;
-        border: none;
-        border-radius: 4px;
-        cursor: pointer;
-        &:hover {
-          background-color: darken($accent-color, 10%);
-        }
+    }
+    button {
+      padding: 0.8rem;
+      background-color: $accent-color;
+      color: #fff;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      &:hover {
+        background-color: color.adjust($accent-color, $lightness: -10%);
       }
     }
   }
-  
+}

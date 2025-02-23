@@ -1,0 +1,341 @@
+@charset "UTF-8";
+/* Normalize CSS básico */
+html {
+  line-height: 1.15;
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  margin: 0;
+}
+
+.header-section .header-content h1 {
+  font-size: 4rem;
+}
+.header-section .header-content p {
+  font-size: 1.5rem;
+}
+@media (max-width: 1024px) {
+  .header-section .header-content h1 {
+    font-size: 3rem;
+  }
+  .header-section .header-content p {
+    font-size: 1.2rem;
+  }
+}
+@media (max-width: 768px) {
+  .header-section .header-content h1 {
+    font-size: 2.5rem;
+  }
+  .header-section .header-content p {
+    font-size: 1rem;
+  }
+}
+
+.section {
+  min-height: 100vh;
+  padding: 2rem;
+}
+@media (max-width: 768px) {
+  .section {
+    min-height: auto;
+    padding: 1rem;
+  }
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+/* Estilos globales y estructura base */
+.header-section {
+  position: relative;
+  height: 100vh;
+  background: url("../images/header.jpg") no-repeat center center/cover;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  color: #fff;
+}
+.header-section::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 1;
+}
+.header-section .header-content {
+  position: relative;
+  z-index: 2;
+}
+.header-section .header-content h1 {
+  font-size: 4rem;
+  margin: 0;
+}
+.header-section .header-content p {
+  font-size: 1.5rem;
+}
+
+.quienes-somos {
+  padding: 4rem 2rem;
+  background-color: rgb(235.8225806452, 226, 216.1774193548);
+  text-align: center;
+}
+.quienes-somos h2 {
+  font-family: "Georgia", serif;
+  margin-bottom: 1rem;
+}
+.quienes-somos p {
+  font-size: 1.2rem;
+}
+.quienes-somos img {
+  max-width: 100%;
+  margin-top: 1rem;
+}
+
+.nuestra-labor {
+  padding: 4rem 2rem;
+  background-color: hsl(34.2857142857, 43.75%, 108.6274509804%);
+  text-align: center;
+}
+.nuestra-labor h2 {
+  font-family: "Georgia", serif;
+  margin-bottom: 1rem;
+}
+.nuestra-labor p {
+  font-size: 1.2rem;
+}
+.nuestra-labor img {
+  max-width: 100%;
+  margin-top: 1rem;
+}
+
+.como-ayudar {
+  padding: 4rem 2rem;
+  background-color: rgb(232.7272727273, 229.4347826087, 228.2727272727);
+  text-align: center;
+}
+.como-ayudar h2 {
+  font-family: "Georgia", serif;
+  margin-bottom: 1rem;
+}
+.como-ayudar p {
+  font-size: 1.2rem;
+}
+.como-ayudar img {
+  max-width: 100%;
+  margin-top: 1rem;
+}
+
+.contacta {
+  padding: 4rem 2rem;
+  background-color: #fff;
+  text-align: center;
+}
+.contacta h2 {
+  font-family: "Georgia", serif;
+  margin-bottom: 1rem;
+}
+.contacta p {
+  font-size: 1.2rem;
+}
+.contacta .contact-form {
+  max-width: 500px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+}
+.contacta .contact-form input,
+.contacta .contact-form textarea {
+  padding: 0.8rem;
+  margin-bottom: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+.contacta .contact-form input:invalid,
+.contacta .contact-form textarea:invalid {
+  border-color: red;
+}
+.contacta .contact-form button {
+  padding: 0.8rem;
+  background-color: #a67c52;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+.contacta .contact-form button:hover {
+  background-color: rgb(131.8629032258, 98.5, 65.1370967742);
+}
+
+.adopta {
+  padding: 4rem 2rem;
+  background-color: #eaeaea;
+  text-align: center;
+}
+.adopta h2 {
+  font-family: "Georgia", serif;
+  margin-bottom: 1rem;
+}
+.adopta p {
+  font-size: 1.2rem;
+}
+.adopta img {
+  max-width: 100%;
+  margin-top: 1rem;
+}
+
+.socios {
+  padding: 4rem 2rem;
+  background-color: #f0f0f0;
+  text-align: center;
+}
+.socios h2 {
+  font-family: "Georgia", serif;
+  margin-bottom: 1rem;
+}
+.socios p {
+  font-size: 1.2rem;
+}
+.socios img {
+  max-width: 100%;
+  margin-top: 1rem;
+}
+
+.voluntarios {
+  padding: 4rem 2rem;
+  background-color: #fff;
+  text-align: center;
+}
+.voluntarios h2 {
+  font-family: "Georgia", serif;
+  margin-bottom: 1rem;
+}
+.voluntarios p {
+  font-size: 1.2rem;
+}
+.voluntarios img {
+  max-width: 100%;
+  margin-top: 1rem;
+}
+.voluntarios .volunteer-form {
+  max-width: 500px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+}
+.voluntarios .volunteer-form input,
+.voluntarios .volunteer-form textarea {
+  padding: 0.8rem;
+  margin-bottom: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+.voluntarios .volunteer-form input:invalid,
+.voluntarios .volunteer-form textarea:invalid {
+  border-color: red;
+}
+.voluntarios .volunteer-form button {
+  padding: 0.8rem;
+  background-color: #8c7b75;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+.voluntarios .volunteer-form button:hover {
+  background-color: rgb(112.3636363636, 98.5217391304, 93.6363636364);
+}
+
+/* Ejemplo de estilos globales */
+body {
+  font-family: "Helvetica Neue", sans-serif;
+  background-color: #f5f5f5;
+  color: #333;
+  margin: 0;
+  padding: 0;
+}
+
+.site-header {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 1000;
+  background-color: #a67c52;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.menu {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 2rem;
+}
+.menu .logo {
+  font-family: "Georgia", serif;
+  font-size: 1.5rem;
+  color: #fff;
+}
+.menu nav.nav ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+}
+.menu nav.nav ul li {
+  margin-left: 1.5rem;
+}
+.menu nav.nav ul li a {
+  color: #fff;
+  text-decoration: none;
+  font-size: 1rem;
+  transition: color 0.3s ease;
+}
+.menu nav.nav ul li a:hover {
+  color: #d2b48c;
+}
+.menu .hamburger {
+  display: none;
+  flex-direction: column;
+  cursor: pointer;
+}
+.menu .hamburger span {
+  width: 25px;
+  height: 3px;
+  background-color: #fff;
+  margin: 4px 0;
+  transition: all 0.3s ease;
+}
+
+/* Estilos responsive para dispositivos móviles */
+@media (max-width: 768px) {
+  .menu nav.nav ul {
+    flex-direction: column;
+    background-color: #a67c52;
+    position: absolute;
+    top: 100%;
+    right: 0;
+    width: 200px;
+    display: none;
+  }
+  .menu nav.nav.active ul {
+    display: flex;
+  }
+  .menu .hamburger {
+    display: flex;
+  }
+}
+.section {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+}
+
+/*# sourceMappingURL=style.css.map */

@@ -7,6 +7,7 @@
   <link rel="stylesheet" href="/css/style.css">
 </head>
 <body>
+  <!-- Menú fijo en la parte superior -->
   <header class="site-header">
     <div class="menu">
       <div class="logo">Ayuba</div>
@@ -33,90 +34,95 @@
         <span></span>
       </div>
     </div>
-    <div class="hero">
-      <div class="hero-overlay"></div>
-      <div class="hero-content">
-        <h1>Ayuba</h1>
-        <p>Protegiendo y cuidando a nuestros gatos con amor y dedicación.</p>
-      </div>
-    </div>
   </header>
 
-  <main>
-    <section id="quienes-somos" class="section quienes-somos">
-      <div class="content">
-        <h2>Quienes Somos</h2>
-        <p>Somos una protectora dedicada a cuidar y encontrar hogar para gatos en situación de abandono.</p>
-        <img src="/images/quienes.jpg" alt="Quienes Somos">
-      </div>
-    </section>
+  <!-- Sección header/hero con imagen de fondo, velo y texto centrado -->
+  <section class="header-section">
+    <div class="header-content">
+      <h1>Ayuba</h1>
+      <p>Protegiendo y cuidando a nuestros gatos con amor y dedicación</p>
+    </div>
+  </section>
 
-    <section id="nuestra-labor" class="section nuestra-labor">
-      <div class="content">
-        <h2>Nuestra Labor</h2>
-        <p>Trabajamos día a día para mejorar la vida de los gatos, brindándoles atención, amor y cuidados.</p>
-        <img src="/images/labor.jpg" alt="Nuestra Labor">
-      </div>
-    </section>
+  <!-- Sección "Quienes Somos" -->
+  <section id="quienes-somos" class="section quienes-somos">
+    <div class="content">
+      <h2>Quienes Somos</h2>
+      <p>Somos una protectora dedicada a cuidar y encontrar hogar para gatos en situación de abandono.</p>
+      <img src="/images/quienes.jpg" alt="Quienes Somos">
+    </div>
+  </section>
 
-    <section id="como-ayudar" class="section como-ayudar">
-      <div class="content">
-        <h2>Como Puedes Ayudar</h2>
-        <p>Tus donaciones y colaboraciones son esenciales para continuar nuestra labor. ¡Únete a nosotros!</p>
-        <img src="/images/ayuda.jpg" alt="Como Puedes Ayudar">
-      </div>
-    </section>
+  <!-- Sección "Nuestra Labor" -->
+  <section id="nuestra-labor" class="section nuestra-labor">
+    <div class="content">
+      <h2>Nuestra Labor</h2>
+      <p>Trabajamos día a día para mejorar la vida de los gatos, brindándoles atención, amor y cuidados.</p>
+      <img src="/images/labor.jpg" alt="Nuestra Labor">
+    </div>
+  </section>
 
-    <section id="contacta" class="section contacta">
-      <div class="content">
-        <h2>Contacta</h2>
-        <p>Si tienes alguna consulta o deseas colaborar, no dudes en contactarnos.</p>
-        <form action="/contact" method="POST" class="contact-form">
-          <input type="text" name="name" placeholder="Nombre" required>
-          <input type="email" name="email" placeholder="Correo Electrónico" required>
-          <textarea name="message" placeholder="Tu mensaje" required></textarea>
-          <button type="submit">Enviar</button>
-        </form>
-      </div>
-    </section>
+  <!-- Sección "Como Puedes Ayudar" -->
+  <section id="como-ayudar" class="section como-ayudar">
+    <div class="content">
+      <h2>Como Puedes Ayudar</h2>
+      <p>Tus donaciones y colaboraciones son esenciales para continuar nuestra labor. ¡Únete a nosotros!</p>
+      <img src="/images/ayuda.jpg" alt="Como Puedes Ayudar">
+    </div>
+  </section>
 
-    <% if (sectionsVisibility.adopta) { %>
-    <section id="adopta" class="section adopta">
-      <div class="content">
-        <h2>Adopta</h2>
-        <p>Mira nuestros gatos en adopción y ayúdanos a encontrarles un hogar.</p>
-        <img src="/images/adopta.jpg" alt="Adopta">
-        <!-- Aquí podrías iterar sobre los gatos disponibles -->
-      </div>
-    </section>
-    <% } %>
+  <!-- Sección "Contacta" -->
+  <section id="contacta" class="section contacta">
+    <div class="content">
+      <h2>Contacta</h2>
+      <p>Si tienes alguna consulta o deseas colaborar, no dudes en contactarnos.</p>
+      <form action="/contact" method="POST" class="contact-form">
+        <input type="text" name="name" placeholder="Nombre" required>
+        <input type="email" name="email" placeholder="Correo Electrónico" required>
+        <textarea name="message" placeholder="Tu mensaje" required></textarea>
+        <button type="submit">Enviar</button>
+      </form>
+    </div>
+  </section>
 
-    <% if (sectionsVisibility.socios) { %>
-    <section id="socios" class="section socios">
-      <div class="content">
-        <h2>Socios</h2>
-        <p>Conviértete en socio de Ayuba y apoya nuestra labor.</p>
-        <img src="/images/socios.jpg" alt="Socios">
-      </div>
-    </section>
-    <% } %>
+  <!-- Sección "Adopta" (opcional) -->
+  <% if (sectionsVisibility.adopta) { %>
+  <section id="adopta" class="section adopta">
+    <div class="content">
+      <h2>Adopta</h2>
+      <p>Mira nuestros gatos en adopción y ayúdanos a encontrarles un hogar.</p>
+      <img src="/images/adopta.jpg" alt="Adopta">
+    </div>
+  </section>
+  <% } %>
 
-    <% if (sectionsVisibility.voluntarios) { %>
-    <section id="voluntarios" class="section voluntarios">
-      <div class="content">
-        <h2>Voluntarios</h2>
-        <p>Únete a nuestro equipo de voluntarios y marca la diferencia en la vida de nuestros gatos.</p>
-        <img src="/images/voluntarios.jpg" alt="Voluntarios">
-        <form action="/volunteer" method="POST" class="volunteer-form">
-          <input type="text" name="name" placeholder="Nombre" required>
-          <input type="email" name="email" placeholder="Correo Electrónico" required>
-          <textarea name="message" placeholder="Por qué quieres ser voluntario" required></textarea>
-          <button type="submit">Enviar Solicitud</button>
-        </form>
-      </div>
-    </section>
-    <% } %>
-  </main>
+  <!-- Sección "Socios" (opcional) -->
+  <% if (sectionsVisibility.socios) { %>
+  <section id="socios" class="section socios">
+    <div class="content">
+      <h2>Socios</h2>
+      <p>Conviértete en socio de Ayuba y apoya nuestra labor.</p>
+      <img src="/images/socios.jpg" alt="Socios">
+    </div>
+  </section>
+  <% } %>
+
+  <!-- Sección "Voluntarios" (opcional) -->
+  <% if (sectionsVisibility.voluntarios) { %>
+  <section id="voluntarios" class="section voluntarios">
+    <div class="content">
+      <h2>Voluntarios</h2>
+      <p>Únete a nuestro equipo de voluntarios y marca la diferencia en la vida de nuestros gatos.</p>
+      <img src="/images/voluntarios.jpg" alt="Voluntarios">
+      <form action="/volunteer" method="POST" class="volunteer-form">
+        <input type="text" name="name" placeholder="Nombre" required>
+        <input type="email" name="email" placeholder="Correo Electrónico" required>
+        <textarea name="message" placeholder="Por qué quieres ser voluntario" required></textarea>
+        <button type="submit">Enviar Solicitud</button>
+      </form>
+    </div>
+  </section>
+  <% } %>
 
   <footer>
     <p>&copy; <%= new Date().getFullYear() %> Ayuba. Todos los derechos reservados.</p>

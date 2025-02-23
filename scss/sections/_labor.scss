@@ -1,6 +1,9 @@
+@use 'sass:color';
+@use '../variables' as *;
+
 .nuestra-labor {
     padding: 4rem 2rem;
-    background-color: lighten($secondary-color, 40%);
+    background-color: color.adjust($secondary-color, $lightness: 40%);
     text-align: center;
     h2 {
       font-family: $heading-font;
