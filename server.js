@@ -1,7 +1,7 @@
 const express = require('express');
 const nodemailer = require('nodemailer');
 const path = require('path');
-const fs = require('fs'); // <-- Importamos fs para leer ficheros
+const fs = require('fs'); // Para leer ficheros
 
 const app = express();
 
@@ -46,7 +46,7 @@ app.get('/', (req, res) => {
 app.post('/contact', async (req, res) => {
   const { name, email, userSubject, asuntoSelect, message } = req.body;
   if (!name || !email || !userSubject || !asuntoSelect || !message) {
-    return res.status(400).send('Todos los campos son obligatorios.');
+    return res.status(400).json({ success: false, message: 'Todos los campos son obligatorios.' });
   }
 
   // Configuración de nodemailer con los datos del fichero de secretos
@@ -70,7 +70,8 @@ app.post('/contact', async (req, res) => {
 
   try {
     await transporter.sendMail(mailOptions);
-    res.redirect('/?contact=success');
+    // Envío correcto: respondemos con JSON
+    res.json({ success: true });
   } catch (error) {
     console.error("Error al enviar el formulario:", error);
 
@@ -113,10 +114,11 @@ app.post('/contact', async (req, res) => {
       console.error("Error al enviar el email del log:", logError);
     }
 
-    // No mostramos error en la web, redirigimos como si fuera un éxito
-    res.redirect('/?contact=success');
+    // Respondemos con error (aunque internamente se ha generado el log)
+    res.status(500).json({ success: false, message: "Error al enviar el mensaje." });
   }
 });
+
 
 // Inicializa el servidor
 const PORT = process.env.PORT || 3000;

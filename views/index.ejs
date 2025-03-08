@@ -10,6 +10,34 @@
   <meta name="keywords" content="Ayuba, protectora de gatos, rescate, adopción, voluntariado, gatos">
   <meta name="author" content="Ayuba">
   <link rel="stylesheet" href="/css/style.css">
+  <style>
+    /* Estilos para el modal */
+    .modal {
+      display: none; /* Oculto por defecto */
+      position: fixed;
+      z-index: 1000;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      overflow: auto;
+      background-color: rgba(0,0,0,0.5); /* Velo oscuro transparente */
+    }
+    .modal-content {
+      background-color: #fff;
+      margin: 15% auto;
+      padding: 20px;
+      border: 1px solid #888;
+      width: 300px;
+      text-align: center;
+      border-radius: 4px;
+    }
+    .modal-content button {
+      margin-top: 10px;
+      padding: 8px 16px;
+      cursor: pointer;
+    }
+  </style>
 </head>
 <body>
   <!-- Menú fijo en la parte superior -->
@@ -110,7 +138,6 @@
 
   <!-- Sección: Voluntarios (opcional) -->
   <% if (sectionsVisibility.voluntarios) { %>
-    <!-- AHORA sin formulario, solo imagen + texto -->
     <section id="voluntarios" class="section voluntarios two-columns">
       <div class="text-column">
         <h2><%= texts.voluntariosTitle %></h2>
@@ -122,47 +149,97 @@
     </section>
   <% } %>
 
-<!-- Sección: Contacta (Imagen izquierda, Texto derecha, con nuevo campo de asunto y select) -->
-<section id="contacta" class="section contacta two-columns reverse">
-  <div class="text-column">
-    <h2><%= texts.contactaTitle %></h2>
-    <p><%= texts.contactaDesc %></p>
-    <form action="/contact" method="POST" class="contact-form" novalidate>
-      <input type="text" name="name" placeholder="<%= texts.contactaPlaceholderName %>" required>
-      <span class="error-message"></span>
-      
-      <input type="email" name="email" placeholder="<%= texts.contactaPlaceholderEmail %>" required>
-      <span class="error-message"></span>
-      
-      <input type="text" name="userSubject" placeholder="<%= texts.contactaPlaceholderSubject %>" required>
-      <span class="error-message"></span>
-      
-      <select name="asuntoSelect" required>
-        <!-- Valor por defecto -->
-        <option value=""><%= texts.contactaSelectDefault %></option>
-        <% if (sectionsVisibility.adopta) { %>
-          <option value="<%= texts.contactaSelectAdopcion %>"><%= texts.contactaSelectAdopcion %></option>
-        <% } %>
-        <option value="<%= texts.contactaSelectSocios %>"><%= texts.contactaSelectSocios %></option>
-        <option value="<%= texts.contactaSelectVoluntarios %>"><%= texts.contactaSelectVoluntarios %></option>
-      </select>
-      <span class="error-message"></span>
-      
-      <textarea name="message" placeholder="<%= texts.contactaPlaceholderMessage %>" required></textarea>
-      <span class="error-message"></span>
-      
-      <button type="submit"><%= texts.contactaBtnText %></button>
-    </form>
-  </div>
-  <div class="image-column">
-    <img src="<%= images.contacta %>" alt="Contacta">
-  </div>
-</section>
-  
+  <!-- Sección: Contacta (Imagen izquierda, Texto derecha, con nuevo campo de asunto y select) -->
+  <section id="contacta" class="section contacta two-columns reverse">
+    <div class="text-column">
+      <h2><%= texts.contactaTitle %></h2>
+      <p><%= texts.contactaDesc %></p>
+      <form action="/contact" method="POST" class="contact-form" novalidate>
+        <input type="text" name="name" placeholder="<%= texts.contactaPlaceholderName %>" required>
+        <span class="error-message"></span>
+        
+        <input type="email" name="email" placeholder="<%= texts.contactaPlaceholderEmail %>" required>
+        <span class="error-message"></span>
+        
+        <input type="text" name="userSubject" placeholder="<%= texts.contactaPlaceholderSubject %>" required>
+        <span class="error-message"></span>
+        
+        <select name="asuntoSelect" required>
+          <option value=""><%= texts.contactaSelectDefault %></option>
+          <% if (sectionsVisibility.adopta) { %>
+            <option value="<%= texts.contactaSelectAdopcion %>"><%= texts.contactaSelectAdopcion %></option>
+          <% } %>
+          <option value="<%= texts.contactaSelectSocios %>"><%= texts.contactaSelectSocios %></option>
+          <option value="<%= texts.contactaSelectVoluntarios %>"><%= texts.contactaSelectVoluntarios %></option>
+        </select>
+        <span class="error-message"></span>
+        
+        <textarea name="message" placeholder="<%= texts.contactaPlaceholderMessage %>" required></textarea>
+        <span class="error-message"></span>
+        
+        <button type="submit"><%= texts.contactaBtnText %></button>
+      </form>
+    </div>
+    <div class="image-column">
+      <img src="<%= images.contacta %>" alt="Contacta">
+    </div>
+  </section>
 
   <footer>
     <p>&copy; <%= new Date().getFullYear() %> Ayuba. <%= texts.footerRights %></p>
   </footer>
+
+  <!-- Modal para confirmación -->
+  <div id="successModal" class="modal">
+    <div class="modal-content">
+      <p>El mensaje ha sido enviado correctamente.</p>
+      <button id="closeModal">Cerrar</button>
+    </div>
+  </div>
+
+  <!-- Script para envío AJAX y manejo del modal -->
+  <script>
+    document.addEventListener("DOMContentLoaded", function() {
+      const form = document.querySelector('.contact-form');
+      form.addEventListener('submit', async function(e) {
+        e.preventDefault(); // Prevenir envío tradicional
+
+        // Recoger datos del formulario
+        const formData = new FormData(form);
+        const data = Object.fromEntries(formData.entries());
+        
+        try {
+          const response = await fetch('/contact', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(data)
+          });
+          const result = await response.json();
+          
+          if (result.success) {
+            // Limpiar el formulario
+            form.reset();
+            // Mostrar el modal de confirmación
+            const modal = document.getElementById("successModal");
+            modal.style.display = "block";
+          } else {
+            // Opcional: manejar el error (mostrar mensaje, etc.)
+            console.error("Error:", result.message);
+          }
+        } catch (err) {
+          console.error("Error al enviar el formulario:", err);
+        }
+      });
+      
+      // Cerrar modal
+      const closeModalBtn = document.getElementById("closeModal");
+      closeModalBtn.addEventListener("click", function() {
+        document.getElementById("successModal").style.display = "none";
+      });
+    });
+  </script>
 
   <script src="/js/main.js"></script>
 </body>
