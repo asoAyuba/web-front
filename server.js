@@ -18,8 +18,8 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.get('/', (req, res) => {
   // Flags para secciones opcionales
   const sectionsVisibility = {
-    adopta: false,   // Mostrar sección de adopción si hay gatos disponibles
-    socios: false,   // Se oculta o muestra mediante un flag de estilos
+    adopta: true,   // Mostrar sección de adopción si hay gatos disponibles
+    socios: true,   // Se oculta o muestra mediante un flag de estilos
     voluntarios: true
   };
   res.render('index', { sectionsVisibility });
