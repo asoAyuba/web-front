@@ -1,11 +1,18 @@
 const express = require('express');
 const nodemailer = require('nodemailer');
 const path = require('path');
+const fs = require('fs'); // <-- Importamos fs para leer ficheros
+
 const app = express();
 
 // Carga de textos e imágenes
 const texts = require('./config/texts.json');
 const images = require('./config/images.json');
+
+// Cargamos el fichero de secretos desde la carpeta "../secrets", 
+// que está fuera del proyecto actual
+const secretsPath = path.join(__dirname, '../secrets', 'nodemailer.json');
+const mailSecrets = JSON.parse(fs.readFileSync(secretsPath, 'utf8'));
 
 // Configuración de EJS
 app.set('view engine', 'ejs');
@@ -35,33 +42,29 @@ app.get('/', (req, res) => {
   });
 });
 
-// Ruta POST para el formulario de Contacta (campo "Asunto" y "Select")
+// Ruta POST para el formulario de Contacta
 app.post('/contact', async (req, res) => {
-  const {
-    name,
-    email,
-    userSubject,     // Campo de texto para "Asunto"
-    asuntoSelect,    // Valor del <select>
-    message
-  } = req.body;
-
+  const { name, email, userSubject, asuntoSelect, message } = req.body;
   if (!name || !email || !userSubject || !asuntoSelect || !message) {
     return res.status(400).send('Todos los campos son obligatorios.');
   }
 
-  // Configura tu transporter con credenciales válidas
+  // Configuración de nodemailer con los datos del fichero de secretos
   let transporter = nodemailer.createTransport({
-    service: 'gmail',
+    host: mailSecrets.host,
+    port: mailSecrets.port,
+    secure: mailSecrets.secure,
     auth: {
-      user: 'your_email@gmail.com',
-      pass: 'your_password'
+      user: mailSecrets.auth.user,
+      pass: mailSecrets.auth.pass
     }
   });
 
-  // El asunto final será "asuntoSelect - userSubject"
   let mailOptions = {
-    from: email,
+    // El 'from' debe ser un correo que coincida con el usuario autenticado
+    from: 'info@ayuba.org',
     to: 'info@ayuba.org',
+    replyTo: email, // Para responder directamente al usuario
     subject: `${asuntoSelect} - ${userSubject}`,
     text: `Nombre: ${name}\nEmail: ${email}\nMensaje: ${message}`
   };
@@ -74,9 +77,6 @@ app.post('/contact', async (req, res) => {
     res.status(500).send("Error al enviar el mensaje.");
   }
 });
-
-// NOTA: Eliminamos la ruta POST para voluntarios ya que la sección voluntarios
-//       ya no contiene formulario.
 
 // Inicializa el servidor
 const PORT = process.env.PORT || 3000;

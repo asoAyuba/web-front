@@ -2,43 +2,97 @@
 @use '../variables' as *;
 
 .contacta {
-  padding: 4rem 2rem;
-  background-color: #fff;
-  text-align: center;
+  /* Contenedor general de la sección */
+  &.two-columns {
+    display: flex;
+    flex-wrap: wrap;
+    /* ... otros estilos del layout ... */
+  }
 
-  h2 {
-    font-family: $heading-font;
-    margin-bottom: 1rem;
+  .text-column {
+    flex: 1 1 50%;
+    /* ... estilos de la columna de texto ... */
   }
-  p {
-    font-size: 1.2rem;
+
+  .image-column {
+    flex: 1 1 50%;
+    /* ... estilos de la columna de imagen ... */
   }
+
+  /* Formulario de contacto */
   .contact-form {
-    max-width: 500px;
-    margin: 0 auto;
     display: flex;
     flex-direction: column;
+    width: 100%;
+    max-width: 400px;
 
-    input,
+    /* Aplicas el mismo estilo a inputs, select y textarea */
+    input[type="text"],
+    input[type="email"],
+    input[type="password"],
+    select,
     textarea {
-      padding: 0.8rem;
-      margin-bottom: 1rem;
+      width: 100%;
+      padding: 10px;
+      margin-bottom: 15px;
+      font-size: 1rem;
       border: 1px solid #ccc;
       border-radius: 4px;
-      &:invalid {
-        border-color: red;
-      }
+      box-sizing: border-box;
+      /* Si deseas apariencia uniforme en navegadores distintos: */
+      -webkit-appearance: none; /* en caso de select en Safari/Chrome */
     }
+
+    /* Estilo específico del select (flecha, etc.) */
+    select {
+      background: #fff url("/images/arrow-down.svg") no-repeat right 0.75rem center / 1rem 1rem;
+      /* Ajusta la ruta y el icono de flecha a tu gusto */
+      cursor: pointer;
+    }
+
+    /* Estilos del botón */
     button {
-      padding: 0.8rem;
-      background-color: $primary-color;
-      color: #fff;
+      padding: 12px 20px;
+      font-size: 1rem;
       border: none;
       border-radius: 4px;
+      background-color: #333;
+      color: #fff;
       cursor: pointer;
+      transition: background-color 0.3s ease;
+
       &:hover {
-        background-color: color.adjust($primary-color, $lightness: -10%);
+        background-color: #555;
       }
     }
+
+    /* ---- EVITAR color rojo antes de enviar el formulario ---- */
+
+    /*
+      1) Deshabilitamos la validación visual por defecto del navegador
+         colocando 'novalidate' en el <form> o aplicando estilos
+         a :invalid para "pisar" el estilo rojo.
+    */
+
+    /* Si quieres DESHABILITAR completamente la validación del navegador, 
+       puedes usar en tu HTML: <form novalidate ...> 
+       y hacer validación manual con JS. */
+
+    /* 2) Si usas 'required' pero quieres ocultar la marca roja, puedes anularla: */
+    input:invalid,
+    select:invalid,
+    textarea:invalid {
+      box-shadow: none;      /* Quita el sombreado rojo */
+      outline: none;         /* Quita el contorno rojo en algunos navegadores */
+      border-color: #ccc;    /* Restablece el color del borde */
+    }
+
+    /*
+      3) Si quieres mostrar el error SOLO después de que el usuario intente enviar:
+         - Mantén 'required' en los campos.
+         - Usa un poco de JavaScript que agregue una clase p.e. "was-submitted" 
+           a este <form> si la validación falla en el "submit". 
+         - Luego en SCSS, solo aplicas estilos rojos si .was-submitted .contact-form :invalid.
+    */
   }
 }

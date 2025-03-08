@@ -157,44 +157,87 @@ body {
 }
 
 .contacta {
-  padding: 4rem 2rem;
-  background-color: #fff;
-  text-align: center;
+  /* Contenedor general de la sección */
+  /* Formulario de contacto */
 }
-.contacta h2 {
-  font-family: "Georgia", serif;
-  margin-bottom: 1rem;
+.contacta.two-columns {
+  display: flex;
+  flex-wrap: wrap;
+  /* ... otros estilos del layout ... */
 }
-.contacta p {
-  font-size: 1.2rem;
+.contacta .text-column {
+  flex: 1 1 50%;
+  /* ... estilos de la columna de texto ... */
+}
+.contacta .image-column {
+  flex: 1 1 50%;
+  /* ... estilos de la columna de imagen ... */
 }
 .contacta .contact-form {
-  max-width: 500px;
-  margin: 0 auto;
   display: flex;
   flex-direction: column;
+  width: 100%;
+  max-width: 400px;
+  /* Aplicas el mismo estilo a inputs, select y textarea */
+  /* Estilo específico del select (flecha, etc.) */
+  /* Estilos del botón */
+  /* ---- EVITAR color rojo antes de enviar el formulario ---- */
+  /*
+    1) Deshabilitamos la validación visual por defecto del navegador
+       colocando 'novalidate' en el <form> o aplicando estilos
+       a :invalid para "pisar" el estilo rojo.
+  */
+  /* Si quieres DESHABILITAR completamente la validación del navegador, 
+     puedes usar en tu HTML: <form novalidate ...> 
+     y hacer validación manual con JS. */
+  /* 2) Si usas 'required' pero quieres ocultar la marca roja, puedes anularla: */
+  /*
+    3) Si quieres mostrar el error SOLO después de que el usuario intente enviar:
+       - Mantén 'required' en los campos.
+       - Usa un poco de JavaScript que agregue una clase p.e. "was-submitted" 
+         a este <form> si la validación falla en el "submit". 
+       - Luego en SCSS, solo aplicas estilos rojos si .was-submitted .contact-form :invalid.
+  */
 }
-.contacta .contact-form input,
+.contacta .contact-form input[type=text],
+.contacta .contact-form input[type=email],
+.contacta .contact-form input[type=password],
+.contacta .contact-form select,
 .contacta .contact-form textarea {
-  padding: 0.8rem;
-  margin-bottom: 1rem;
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 15px;
+  font-size: 1rem;
   border: 1px solid #ccc;
   border-radius: 4px;
+  box-sizing: border-box;
+  /* Si deseas apariencia uniforme en navegadores distintos: */
+  -webkit-appearance: none; /* en caso de select en Safari/Chrome */
 }
-.contacta .contact-form input:invalid,
-.contacta .contact-form textarea:invalid {
-  border-color: red;
-}
-.contacta .contact-form button {
-  padding: 0.8rem;
-  background-color: #a67c52;
-  color: #fff;
-  border: none;
-  border-radius: 4px;
+.contacta .contact-form select {
+  background: #fff url("/images/arrow-down.svg") no-repeat right 0.75rem center/1rem 1rem;
+  /* Ajusta la ruta y el icono de flecha a tu gusto */
   cursor: pointer;
 }
+.contacta .contact-form button {
+  padding: 12px 20px;
+  font-size: 1rem;
+  border: none;
+  border-radius: 4px;
+  background-color: #333;
+  color: #fff;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
 .contacta .contact-form button:hover {
-  background-color: rgb(131.8629032258, 98.5, 65.1370967742);
+  background-color: #555;
+}
+.contacta .contact-form input:invalid,
+.contacta .contact-form select:invalid,
+.contacta .contact-form textarea:invalid {
+  box-shadow: none; /* Quita el sombreado rojo */
+  outline: none; /* Quita el contorno rojo en algunos navegadores */
+  border-color: #ccc; /* Restablece el color del borde */
 }
 
 .adopta {
