@@ -122,52 +122,42 @@
     </section>
   <% } %>
 
-    <!-- Sección: Contacta (Imagen izquierda, Texto derecha, con nuevo campo de asunto y select) -->
-    <section id="contacta" class="section contacta two-columns reverse">
-      <div class="text-column">
-        <h2><%= texts.contactaTitle %></h2>
-        <p><%= texts.contactaDesc %></p>
-        <form action="/contact" method="POST" class="contact-form" novalidate>
-          <input
-            type="text"
-            name="name"
-            placeholder="<%= texts.contactaPlaceholderName %>"
-            required
-          >
-          <input
-            type="email"
-            name="email"
-            placeholder="<%= texts.contactaPlaceholderEmail %>"
-            required
-          >
-          <input
-            type="text"
-            name="userSubject"
-            placeholder="<%= texts.contactaPlaceholderSubject %>"
-            required
-          >
-          <select name="asuntoSelect" required>
-            <!-- Valor por defecto -->
-            <option value=""><%= texts.contactaSelectDefault %></option>
-            <% if (sectionsVisibility.adopta) {%>
-              <option value="<%= texts.contactaSelectAdopcion %>"><%= texts.contactaSelectAdopcion %></option> 
-            <% } %>
-            
-            <option value="<%= texts.contactaSelectSocios %>"><%= texts.contactaSelectSocios %></option>
-            <option value="<%= texts.contactaSelectVoluntarios %>"><%= texts.contactaSelectVoluntarios %></option>
-          </select>
-          <textarea
-            name="message"
-            placeholder="<%= texts.contactaPlaceholderMessage %>"
-            required
-          ></textarea>
-          <button type="submit"><%= texts.contactaBtnText %></button>
-        </form>
-      </div>
-      <div class="image-column">
-        <img src="<%= images.contacta %>" alt="Contacta">
-      </div>
-    </section>
+<!-- Sección: Contacta (Imagen izquierda, Texto derecha, con nuevo campo de asunto y select) -->
+<section id="contacta" class="section contacta two-columns reverse">
+  <div class="text-column">
+    <h2><%= texts.contactaTitle %></h2>
+    <p><%= texts.contactaDesc %></p>
+    <form action="/contact" method="POST" class="contact-form" novalidate>
+      <input type="text" name="name" placeholder="<%= texts.contactaPlaceholderName %>" required>
+      <span class="error-message"></span>
+      
+      <input type="email" name="email" placeholder="<%= texts.contactaPlaceholderEmail %>" required>
+      <span class="error-message"></span>
+      
+      <input type="text" name="userSubject" placeholder="<%= texts.contactaPlaceholderSubject %>" required>
+      <span class="error-message"></span>
+      
+      <select name="asuntoSelect" required>
+        <!-- Valor por defecto -->
+        <option value=""><%= texts.contactaSelectDefault %></option>
+        <% if (sectionsVisibility.adopta) { %>
+          <option value="<%= texts.contactaSelectAdopcion %>"><%= texts.contactaSelectAdopcion %></option>
+        <% } %>
+        <option value="<%= texts.contactaSelectSocios %>"><%= texts.contactaSelectSocios %></option>
+        <option value="<%= texts.contactaSelectVoluntarios %>"><%= texts.contactaSelectVoluntarios %></option>
+      </select>
+      <span class="error-message"></span>
+      
+      <textarea name="message" placeholder="<%= texts.contactaPlaceholderMessage %>" required></textarea>
+      <span class="error-message"></span>
+      
+      <button type="submit"><%= texts.contactaBtnText %></button>
+    </form>
+  </div>
+  <div class="image-column">
+    <img src="<%= images.contacta %>" alt="Contacta">
+  </div>
+</section>
   
 
   <footer>

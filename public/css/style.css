@@ -240,6 +240,27 @@ body {
   border-color: #ccc; /* Restablece el color del borde */
 }
 
+/* Estilos para inputs, select y textarea cuando estén en error o correctos */
+.contact-form input.error,
+.contact-form select.error,
+.contact-form textarea.error {
+  border: 2px solid red;
+}
+
+.contact-form input.valid,
+.contact-form select.valid,
+.contact-form textarea.valid {
+  border: 2px solid green;
+}
+
+/* Estilo para los mensajes de error */
+.error-message {
+  display: block;
+  color: red;
+  font-size: 0.9em;
+  margin-top: 4px;
+}
+
 .adopta {
   padding: 4rem 2rem;
   background-color: #eaeaea;
