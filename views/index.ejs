@@ -149,7 +149,10 @@
           <select name="asuntoSelect" required>
             <!-- Valor por defecto -->
             <option value=""><%= texts.contactaSelectDefault %></option>
-            <option value="<%= texts.contactaSelectAdopcion %>"><%= texts.contactaSelectAdopcion %></option>
+            <% if (sectionsVisibility.adopta) {%>
+              <option value="<%= texts.contactaSelectAdopcion %>"><%= texts.contactaSelectAdopcion %></option> 
+            <% } %>
+            
             <option value="<%= texts.contactaSelectSocios %>"><%= texts.contactaSelectSocios %></option>
             <option value="<%= texts.contactaSelectVoluntarios %>"><%= texts.contactaSelectVoluntarios %></option>
           </select>

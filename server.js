@@ -29,7 +29,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.get('/', (req, res) => {
   // Flags para secciones opcionales
   const sectionsVisibility = {
-    adopta: true,
+    adopta: false,
     socios: true,
     voluntarios: true
   };
