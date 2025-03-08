@@ -1,0 +1,38 @@
+{
+    "title": "Ayuba - Protectora de Gatos",
+    "headerHeroTitle": "Ayuba",
+    "headerHeroSubtitle": "Protegiendo y cuidando a nuestros gatos con amor y dedicación",
+    
+    "quienesSomosTitle": "Quienes Somos",
+    "quienesSomosDesc": "Somos una protectora dedicada a cuidar y encontrar hogar para gatos en situación de abandono.",
+    
+    "laborTitle": "Nuestra Labor",
+    "laborDesc": "Trabajamos día a día para mejorar la vida de los gatos, brindándoles atención, amor y cuidados.",
+    
+    "ayudaTitle": "Cómo Puedes Ayudar",
+    "ayudaDesc": "Tus donaciones y colaboraciones son esenciales para continuar nuestra labor. ¡Únete a nosotros!",
+    
+    "contactaTitle": "Contacta",
+    "contactaDesc": "Si tienes alguna consulta o deseas colaborar, no dudes en contactarnos.",
+    "contactaPlaceholderName": "Nombre",
+    "contactaPlaceholderEmail": "Correo Electrónico",
+    "contactaPlaceholderSubject": "Asunto",
+    "contactaPlaceholderMessage": "Tu mensaje",
+    "contactaSelectDefault": "seleccione el asunto del email",
+    "contactaSelectAdopcion": "adopcion",
+    "contactaSelectSocios": "socios",
+    "contactaSelectVoluntarios": "voluntarios",
+    "contactaBtnText": "Enviar",
+    
+    "adoptaTitle": "Adopta",
+    "adoptaDesc": "Mira nuestros gatos en adopción y ayúdanos a encontrarles un hogar.",
+    
+    "sociosTitle": "Socios",
+    "sociosDesc": "Conviértete en socio de Ayuba y apoya nuestra labor.",
+    
+    "voluntariosTitle": "Voluntarios",
+    "voluntariosDesc": "Únete a nuestro equipo de voluntarios y marca la diferencia en la vida de nuestros gatos.",
+    
+    "footerRights": "Todos los derechos reservados."
+  }
+  
