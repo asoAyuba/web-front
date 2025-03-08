@@ -61,10 +61,9 @@ app.post('/contact', async (req, res) => {
   });
 
   let mailOptions = {
-    // El 'from' debe ser un correo que coincida con el usuario autenticado
     from: 'info@ayuba.org',
     to: 'info@ayuba.org',
-    replyTo: email, // Para responder directamente al usuario
+    replyTo: email,
     subject: `${asuntoSelect} - ${userSubject}`,
     text: `Nombre: ${name}\nEmail: ${email}\nMensaje: ${message}`
   };
@@ -73,8 +72,49 @@ app.post('/contact', async (req, res) => {
     await transporter.sendMail(mailOptions);
     res.redirect('/?contact=success');
   } catch (error) {
-    console.error(error);
-    res.status(500).send("Error al enviar el mensaje.");
+    console.error("Error al enviar el formulario:", error);
+
+    // Aseguramos que la carpeta /logs existe
+    const logsDir = path.join(__dirname, 'logs');
+    if (!fs.existsSync(logsDir)) {
+      fs.mkdirSync(logsDir);
+    }
+
+    // Formateamos la fecha para el nombre del archivo: ddmmssAAAA-log-contactForm.txt
+    let now = new Date();
+    let dd = String(now.getDate()).padStart(2, '0');
+    let mm = String(now.getMonth() + 1).padStart(2, '0'); // meses empiezan en 0
+    let ss = String(now.getSeconds()).padStart(2, '0');
+    let aaaa = now.getFullYear();
+    let filename = `${dd}${mm}${ss}${aaaa}-log-contactForm.txt`;
+    let logPath = path.join(logsDir, filename);
+
+    // Contenido del log: datos del formulario y descripción del error
+    let logContent = `--- Datos del formulario ---\n`;
+    logContent += `Nombre: ${name}\nEmail: ${email}\nUserSubject: ${userSubject}\nAsuntoSelect: ${asuntoSelect}\nMensaje: ${message}\n\n`;
+    logContent += `--- Error ---\n`;
+    logContent += error.toString();
+
+    // Escribimos el log en el fichero
+    fs.writeFileSync(logPath, logContent, 'utf8');
+
+    // Configuramos el email que enviará el log
+    let logEmailOptions = {
+      from: 'info@ayuba.org',
+      to: 'info@ayuba.org',
+      subject: 'log - formulario contacto fallido',
+      text: logContent
+    };
+
+    // Intentamos enviar el email del log
+    try {
+      await transporter.sendMail(logEmailOptions);
+    } catch (logError) {
+      console.error("Error al enviar el email del log:", logError);
+    }
+
+    // No mostramos error en la web, redirigimos como si fuera un éxito
+    res.redirect('/?contact=success');
   }
 });
 
