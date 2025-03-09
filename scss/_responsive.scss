@@ -1,81 +1,172 @@
-@use 'variables' as *;
+/* _responsive.scss */
 
-// Global Styles
-body {
-  font-family: $font-family;
-  background-color: $background-color;
-  color: $text-color;
+/* ===== Global Reset y Base ===== */
+html, body {
   margin: 0;
   padding: 0;
+  overflow-x: hidden;  /* Evita scroll horizontal */
+  box-sizing: border-box;
+  font-family: sans-serif;
 }
 
-// HEADER SECTION (Hero)
-// Ocupa el 100vh con imagen de fondo y velo oscuro
-.header-section {
-  height: 100vh;
-  position: relative;
-  background-image: url('../images/header.jpg');
-  background-repeat: no-repeat;
-  background-size: cover;
-  background-position: center center;
-
-  &::before {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.5);
-    z-index: 1;
-  }
-
-  .header-content {
-    position: relative;
-    z-index: 2;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    height: 100%;
-    color: #fff;
-    text-align: center;
-  }
+*, *::before, *::after {
+  box-sizing: inherit;
 }
 
-// Secciones generales (excepto header)
-// Cada sección ocupa el 50vh en desktop
+/* Cada sección ocupa el 100% del ancho */
 .section {
-  height: 50vh;
+  width: 100%;
+  overflow: hidden;
 }
 
-// Layout de dos columnas para secciones (en desktop)
-// Con la clase .reverse se invierte el orden de columnas
+/* ===== Layout Base para Escritorio (Laptop y Superior) ===== */
 .two-columns {
   display: flex;
+  flex-direction: row;
+  align-items: center;  /* Centrado vertical */
+  width: 100%;
+}
+
+.two-columns .text-column,
+.two-columns .image-column {
+  width: 50%;
+  height: 100%;
+  padding: 20px;
+  box-sizing: border-box;
+}
+
+/* Columna de texto: centrar contenido */
+.two-columns .text-column {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
   align-items: center;
-  justify-content: space-between;
+  text-align: center;
+}
 
-  .text-column,
-  .image-column {
-    flex: 1;
-    padding: 1rem;
+/* Columna de imagen: la imagen llena el contenedor */
+.two-columns .image-column {
+  position: relative;
+  overflow: hidden;
+}
+
+.two-columns .image-column img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* Cubre el contenedor mostrando el máximo de imagen */
+  display: block;
+}
+
+/* Aseguramos que en la sección Contacta el formulario se muestre */
+.contacta .contact-form {
+  display: block !important; /* Forzamos visibilidad */
+  width: 100%;
+  max-width: 500px;
+  margin: 20px auto 0;
+  opacity: 1;
+  visibility: visible;
+}
+
+/* ===== Media Queries para Laptop y Superior (min-width: 1024px) ===== */
+@media (min-width: 1024px) {
+  /* Cada sección: 100% width y 75vh de alto */
+  .section {
+    width: 100%;
+    height: 75vh;
   }
-
-  &.reverse {
-    flex-direction: row-reverse;
+  
+  .two-columns {
+    flex-direction: row;
+  }
+  
+  .two-columns .text-column,
+  .two-columns .image-column {
+    width: 50%;
+    height: 100%;
+    padding: 20px;
+  }
+  
+  .two-columns .text-column {
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+  }
+  
+  .two-columns .image-column img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  
+  /* Sección Contacta: el formulario se muestra en la columna de texto */
+  .contacta .contact-form {
+    height: 100vh Impo !important;
+    display: block !important;
+    width: 100%;
+    max-width: 500px;
+    margin: 20px auto 0;
+    opacity: 1;
+    visibility: visible;
   }
 }
 
-// En mobile y tablet, las secciones se apilan en una sola columna
-@media (max-width: 1024px) {
+/* ===== Media Queries para Tablet (entre 769px y 1023px) ===== */
+@media (max-width: 1023px) and (min-width: 769px) {
   .two-columns {
-    flex-direction: column;
+    flex-direction: column;  /* Apilar columnas */
+  }
+  
+  .two-columns .text-column,
+  .two-columns .image-column {
+    width: 100%;
+    padding: 20px;
+    max-width: 100%;
+  }
+  
+  /* En Contacta, el formulario se mantiene centrado */
+  .contacta .contact-form {
+    display: block;
+    width: 80%;
+    max-width: 500px;
+    margin: 20px auto 0;
+  }
+}
 
-    .text-column,
-    .image-column {
-      width: 100%;
-      padding: 0.5rem;
-    }
+/* ===== Media Queries para Móvil (max-width: 768px) ===== */
+@media (max-width: 768px) {
+  .section {
+    width: 100%;
+    min-height: 100vh; /* Cada sección ocupa al menos el 100% del alto del viewport */
+  }
+  
+  .two-columns {
+    flex-direction: column; /* Apilar columnas */
+  }
+  
+  .two-columns .text-column,
+  .two-columns .image-column {
+    width: 100%;
+    padding: 15px;
+    max-width: 100%;
+  }
+  
+  /* En móvil, la columna de texto se centra al 100% */
+  .two-columns .text-column {
+    text-align: center;
+  }
+  
+  /* Las imágenes en móvil se ajustan al ancho completo y altura auto para mantener proporciones */
+  .two-columns .image-column img {
+    width: 100%;
+    height: auto;
+    object-fit: contain;
+    display: block;
+  }
+  
+  /* En Contacta, el formulario se hace más estrecho para dejar márgenes laterales */
+  .contacta .contact-form {
+    display: block;
+    width: 90%;
+    margin: 20px auto 0;
   }
 }
