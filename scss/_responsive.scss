@@ -14,7 +14,10 @@ body {
 .header-section {
   height: 100vh;
   position: relative;
-  background: url('../images/header.jpg') no-repeat center center/cover;
+  background-image: url('../images/header.jpg');
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center center;
 
   &::before {
     content: "";

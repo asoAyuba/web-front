@@ -4,12 +4,16 @@
 .header-section {
   position: relative;
   height: 100vh; // Ocupa toda la altura de la pantalla
-  background: url('../images/header.jpg') no-repeat center center/cover; // Imagen de fondo cargada por SCSS
+  background-image: url('/images/header.jpg');
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center center;
   display: flex;
   align-items: center;
   justify-content: center;
   text-align: center;
   color: #fff; // Texto en blanco
+
 
   // Velo oscuro
   &::before {

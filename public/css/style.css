@@ -9,6 +9,11 @@ body {
   margin: 0;
 }
 
+img {
+  padding: 0;
+  margin: 0 !important;
+}
+
 body {
   font-family: "Helvetica Neue", sans-serif;
   background-color: #f5f5f5;
@@ -20,7 +25,10 @@ body {
 .header-section {
   height: 100vh;
   position: relative;
-  background: url("../images/header.jpg") no-repeat center center/cover;
+  background-image: url("../images/header.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center center;
 }
 .header-section::before {
   content: "";
@@ -76,7 +84,10 @@ body {
 .header-section {
   position: relative;
   height: 100vh;
-  background: url("../images/header.jpg") no-repeat center center/cover;
+  background-image: url("/images/header.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center center;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -119,7 +130,6 @@ body {
 }
 .quienes-somos img {
   max-width: 100%;
-  margin-top: 1rem;
 }
 
 .nuestra-labor {
@@ -136,7 +146,6 @@ body {
 }
 .nuestra-labor img {
   max-width: 100%;
-  margin-top: 1rem;
 }
 
 .como-ayudar {
@@ -153,7 +162,6 @@ body {
 }
 .como-ayudar img {
   max-width: 100%;
-  margin-top: 1rem;
 }
 
 .contacta {
@@ -275,7 +283,6 @@ body {
 }
 .adopta img {
   max-width: 100%;
-  margin-top: 1rem;
 }
 
 .socios {
@@ -292,7 +299,6 @@ body {
 }
 .socios img {
   max-width: 100%;
-  margin-top: 1rem;
 }
 
 .voluntarios {
@@ -309,7 +315,6 @@ body {
 }
 .voluntarios img {
   max-width: 100%;
-  margin-top: 1rem;
 }
 .voluntarios .volunteer-form {
   max-width: 500px;
@@ -460,7 +465,6 @@ body {
 .two-columns .text-column,
 .two-columns .image-column {
   flex: 1;
-  padding: 1rem;
 }
 .two-columns.reverse {
   flex-direction: row-reverse;
@@ -472,7 +476,6 @@ body {
   .two-columns .text-column,
   .two-columns .image-column {
     width: 100%;
-    padding: 0.5rem;
   }
   .two-columns.reverse {
     flex-direction: column;
@@ -505,6 +508,51 @@ body {
   margin-top: 10px;
   padding: 8px 16px;
   cursor: pointer;
+}
+
+/* Evita márgenes y scroll horizontal en la página */
+html, body {
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
+}
+
+/* Asegura que cada sección se ajuste al ancho completo sin overflow */
+.section {
+  width: 100%;
+  overflow: hidden;
+}
+
+/* Estilo para el layout de dos columnas */
+.two-columns {
+  padding: 0;
+  display: flex;
+  flex-wrap: nowrap;
+  align-items: stretch;
+}
+
+/* Las dos columnas ocupan 50% cada una */
+.text-column,
+.image-column {
+  flex: 0 0 50%;
+  max-width: 50%;
+}
+
+/* Columna de imagen: se posiciona de forma relativa y oculta el overflow */
+.image-column {
+  margin: 0;
+  padding: 0;
+  position: relative;
+  overflow: hidden;
+}
+
+/* La imagen dentro de la columna: se ajusta a todo el contenedor */
+.image-column img {
+  padding: 0 !important;
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* Escala la imagen para cubrir el contenedor manteniendo proporciones */
+  display: block; /* Quita posibles espacios en línea */
 }
 
 /*# sourceMappingURL=style.css.map */

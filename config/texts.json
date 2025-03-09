@@ -18,10 +18,11 @@
     "contactaPlaceholderEmail": "Correo Electrónico",
     "contactaPlaceholderSubject": "Asunto",
     "contactaPlaceholderMessage": "Tu mensaje",
-    "contactaSelectDefault": "seleccione el asunto del email",
+    "contactaSelectDefault": "seleccione el tema de su consulta",
     "contactaSelectAdopcion": "adopcion",
     "contactaSelectSocios": "socios",
     "contactaSelectVoluntarios": "voluntarios",
+    "contactaSelectOtros": "otros",
     "contactaBtnText": "Enviar",
     
     "adoptaTitle": "Adopta",
