@@ -121,5 +121,5 @@ app.post('/contact', async (req, res) => {
 
 
 // Inicializa el servidor
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || 80;
 app.listen(PORT, () => console.log(`Servidor iniciado en http://localhost:${PORT}`));
